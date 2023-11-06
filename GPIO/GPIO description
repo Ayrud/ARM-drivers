@@ -1,0 +1,7 @@
+For the GPIO driver:
+The struct for GPIO registers.
+The PIN_NUMBER enum is for the pins numbering (from 0 to 16)
+The PIN_VALUE enum can be set to either high or low
+Adding some masks for both MOOD and configuration by #define macros. And we can use the SET_GPIO_PIN_MODE(REG,PIN,MASK) and CLR_GPIO_PIN_MODE(REG,PIN) macro functions
+to set the mood and config for every GPIO_PIN
+The array of pointers to the struct has 3 pointers, for each GPIO we have (GPIOA, BPIOB and GPIOC)
