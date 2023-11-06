@@ -1,0 +1,52 @@
+#ifndef GPIO_INTERFACE_H_
+#define GPIO_INTERFACE_H_
+#include "GPIO_registers.h"
+#include "BIT_Math.h"
+//4 BITS SET AND CLEAR
+#define SET_GPIO_PIN_MODE(REG,PIN,MASK)			(REG) |=  (MASK << (PIN*4))
+#define CLR_GPIO_PIN_MODE(REG,PIN)			(REG) &= ~(0xF << (PIN*4))
+//Pins numbering
+typedef enum PINS_number
+{
+	PIN0,PIN1,PIN2,PIN3,PIN4,PIN5,PIN6,PIN7,PIN8,PIN9,PIN10,PIN11,PIN12,PIN13,PIN14,PIN15
+}PIN_NUMBER;
+//Pins mode
+typedef enum PIN_mode
+{
+	INPUT,OUT_10MHZ,OUT_2MHZ,OUT_50MHZ
+}PIN_MODE;
+typedef enum PIN_outputValue
+{
+	PIN_CLEAR,PIN_SET
+}PIN_VALUE;
+//Pins modes and configuration
+//INPUT
+#define INPUT_ANALOG					0b0000
+#define INPUT_FLOATING					0b0100
+#define INPUT_PULLPUSH					0b1000
+//Output 10mhz
+#define OUTPUT_10MHZ_PULLPUSH			0b0001
+#define OUTPUT_10MHZ_OPENDRAIN			0b0101
+#define OUTPUT_10MHZ_AF_PUSHPULL		0b1001
+#define OUTPUT_10MHZ_AF_OPENDRAIN		0b1101
+//Output 2mhz
+#define OUTPUT_2MHZ_PULLPUSH			0b0010
+#define OUTPUT_2MHZ_OPENDRAIN			0b0110
+#define OUTPUT_2MHZ_AF_PUSHPULL			0b1010
+#define OUTPUT_2MHZ_AF_OPENDRAIN		0b1110
+//Output 50mhz
+#define OUTPUT_50MHZ_PULLPUSH			0b0011
+#define OUTPUT_50MHZ_OPENDRAIN			0b0111
+#define OUTPUT_50MHZ_AF_PUSHPULL		0b1011
+#define OUTPUT_50MHZ_AF_OPENDRAIN		0b1111
+
+
+void GPIO_voidSetPinDirection(u8 PORT_NAME,PIN_NUMBER Copy_PinNumber,PIN_MODE Copy_PINMODE);
+void GPIO_voidSetPinValue(u8 PORT_NAME,PIN_NUMBER Copy_PinNumber,PIN_VALUE Copy_OutputValue);
+u8 GPIO_u8GetPinValue(u8 PORT_NAME,PIN_NUMBER Copy_PinNumber);
+
+
+
+
+
+#endif
